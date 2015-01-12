@@ -1,1 +1,2 @@
 # take-talk
+#auteur: Karlo
