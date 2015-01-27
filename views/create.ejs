@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>TakeTalk | The new meeting manager</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link href="stylesheets/style.css" rel="stylesheet">
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="javascripts/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="javascripts/ie-emulation-modes-warning.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">TakeTalk</h3>
+              <nav>
+                <ul class="nav masthead-nav">
+                  <li><a href="/">Home</a></li>
+                  <li><a href="tutorial">Tutorial</a></li>
+                  <li><a href="documentation">Documentation</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <div class="inner cover">
+            <form action="/" method="post" id="meetingForm">
+              <fieldset>
+                <legend>Create a new meeting</legend>
+                <div class="control-group">
+                  <label class="control-label" for="name">User Name</label>
+                  <div class="controls">
+                    <input id="name" name="name" type="text" placeholder="" class="input-xlarge" required="">
+                    <p class="help-block">Required</p>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="e-mail">E-mail</label>
+                  <div class="controls">
+                    <input id="e-mail" name="e-mail" type="text" placeholder="" class="input-xlarge" required="">
+                    <p class="help-block">Required</p>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="reunion">Meeting Name</label>
+                  <div class="controls">
+                    <input id="reunion" name="reunion" type="text" placeholder="" class="input-xlarge" required="">
+                    <p class="help-block">Required</p>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="guests">Guests' E-mails</label>
+                  <div class="controls">                     
+                    <textarea id="guests" name="guests"></textarea>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="submit"></label>
+                  <div class="controls">
+                    <button id="submit" name="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+          <div class="mastfoot">
+            <div class="inner">
+              <p><a href="www.univ-evry.fr">University of Evry</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="javascripts/docs.min.js"></script>
+    <script src="javascripts/ie10-viewport-bug-workaround.js"></script>
+    <script src="javascripts/main.js"
+  </body>
+</html>
+
