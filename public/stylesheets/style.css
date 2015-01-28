@@ -1,17 +1,76 @@
-/*
- * Globals
- */
+* {
+  box-sizing: border-box;
+}
 
-/* Links */
-a,
-a:focus,
+html {
+  height: 100%;
+  background-color: #333;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  font-family:
+    "HelveticaNeue-Light",
+    "Helvetica Neue Light",
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    "Lucida Grande",
+    sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100%;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  font-family:
+    "HelveticaNeue-Light",
+    "Helvetica Neue Light",
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    "Lucida Grande",
+    sans-serif;
+}
+
+ul {
+  list-style: none;
+  word-wrap: break-word;
+}
+
+a {
+  color: #fff;
+}
+
+a:focus {
+  color: #fff;
+}
+
 a:hover {
   color: #fff;
 }
 
-/* Custom default button */
-.btn-default,
-.btn-default:hover,
+.btn-default {
+  color: #333;
+  text-shadow: none; /* Prevent inheritence from `body` */
+  background-color: #fff;
+  border: 1px solid #fff;
+}
+
+.btn-default:hover {
+  color: #333;
+  text-shadow: none; /* Prevent inheritence from `body` */
+  background-color: #fff;
+  border: 1px solid #fff;
+}
+
 .btn-default:focus {
   color: #333;
   text-shadow: none; /* Prevent inheritence from `body` */
@@ -19,23 +78,6 @@ a:hover {
   border: 1px solid #fff;
 }
 
-
-/*
- * Base structure
- */
-
-html,
-body {
-  height: 100%;
-  background-color: #333;
-}
-body {
-  color: #fff;
-  text-align: center;
-  text-shadow: 0 1px 3px rgba(0,0,0,.5);
-}
-
-/* Extra markup and styles for table-esque vertical and horizontal centering */
 .site-wrapper {
   display: table;
   width: 100%;
@@ -53,15 +95,14 @@ body {
   margin-left: auto;
 }
 
-/* Padding for spacing */
 .inner {
   padding: 30px;
 }
 
+.masthead.clearfix {
+  z-index: 1;
+}
 
-/*
- * Header
- */
 .masthead-brand {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -70,9 +111,11 @@ body {
 .masthead-nav > li {
   display: inline-block;
 }
+
 .masthead-nav > li + li {
   margin-left: 20px;
 }
+
 .masthead-nav > li > a {
   padding-right: 0;
   padding-left: 0;
@@ -82,17 +125,155 @@ body {
   color: rgba(255,255,255,.75);
   border-bottom: 2px solid transparent;
 }
-.masthead-nav > li > a:hover,
+
+.masthead-nav > li > a:hover {
+  background-color: transparent;
+  border-bottom-color: #a9a9a9;
+  border-bottom-color: rgba(255,255,255,.25);
+}
+
 .masthead-nav > li > a:focus {
   background-color: transparent;
   border-bottom-color: #a9a9a9;
   border-bottom-color: rgba(255,255,255,.25);
 }
-.masthead-nav > .active > a,
-.masthead-nav > .active > a:hover,
+.masthead-nav > .active > a {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+.masthead-nav > .active > a:hover {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
 .masthead-nav > .active > a:focus {
   color: #fff;
   border-bottom-color: #fff;
+}
+
+.cover {
+  padding: 0 20px;
+}
+
+.cover .btn-lg {
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+.mastfoot {
+  color: #999; /* IE8 proofing */
+  color: rgba(255,255,255,.5);
+}
+
+.pages {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
+.page {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.create.page .form {
+  height: 100px;
+  margin-top: 100px;
+  position: absolute;
+
+  text-align: center;
+  top: 25%;
+  width: 100%;
+}
+
+.create.page .form .usernameInput {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #fff;
+  outline: none;
+  padding-bottom: 15px;
+  text-align: center;
+  width: 400px;
+}
+
+.create.page .title {
+  font-size: 200%;
+}
+
+.create.page .usernameInput {
+  font-size: 200%;
+  letter-spacing: 3px;
+}
+
+.create.page .title {
+  color: #fff;
+  font-weight: 100;
+}
+
+.create.page .usernameInput {
+  color: #fff;
+  font-weight: 100;
+}
+
+.app.page {
+  display: none;
+}
+
+.messages {
+  font-size: 150%;
+}
+
+.inputMessage {
+  font-size: 100%;
+}
+
+.log {
+  color: gray;
+  font-size: 70%;
+  margin: 5px;
+  text-align: center;
+}
+
+.chatArea {
+  height: 100%;
+  padding-bottom: 60px;
+}
+
+.messages {
+  height: 100%;
+  margin: 0;
+  overflow-y: scroll;
+  padding: 10px 20px 10px 20px;
+}
+
+.message.typing .messageBody {
+  color: gray;
+}
+
+.username {
+  float: left;
+  font-weight: 700;
+  overflow: hidden;
+  padding-right: 15px;
+  text-align: right;
+}
+
+.inputMessage {
+  border: 10px solid #000;
+  bottom: 0;
+  height: 60px;
+  left: 0;
+  outline: none;
+  padding-left: 10px;
+  position: absolute;
+  right: 0;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -102,37 +283,6 @@ body {
   .masthead-nav {
     float: right;
   }
-}
-
-
-/*
- * Cover
- */
-
-.cover {
-  padding: 0 20px;
-}
-.cover .btn-lg {
-  padding: 10px 20px;
-  font-weight: bold;
-}
-
-
-/*
- * Footer
- */
-
-.mastfoot {
-  color: #999; /* IE8 proofing */
-  color: rgba(255,255,255,.5);
-}
-
-
-/*
- * Affix and center
- */
-
-@media (min-width: 768px) {
   /* Pull out the header and footer */
   .masthead {
     position: fixed;
@@ -161,4 +311,3 @@ body {
     width: 700px;
   }
 }
-

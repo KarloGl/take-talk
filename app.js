@@ -10,7 +10,7 @@ var users = require('./routes/users');
 
 var app = express();
 
-//io test
+//added from socket io chat demo
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var port = process.env.PORT || 3000;
@@ -64,7 +64,7 @@ app.use(function(err, req, res, next) {
     });
 });
 
-// Chatroom
+// App
 
 // usernames which are currently connected to the chat
 var usernames = {};
@@ -83,9 +83,12 @@ io.on('connection', function (socket) {
   });
 
   // when the client emits 'add user', this listens and executes
-  socket.on('add user', function (username) {
+  socket.on('create meeting', function (userName, email, meetingName, guestsEmails) {
     // we store the username in the socket session for this client
-    socket.username = username;
+    socket.userName = userName;
+    socket.email = email;
+    socket.meetingName = meetingName;
+    socket.guestsEmails = guestsEmails;
     // add the client's username to the global list
     usernames[username] = username;
     ++numUsers;
