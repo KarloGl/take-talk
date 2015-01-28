@@ -16,11 +16,6 @@ router.get('/documentation', function(req, res, next) {
   res.render('documentation');
 });
 
-/* GET create page. */
-router.get('/create', function(req, res, next) {
-  res.render('create');
-});
-
 /* GET meeting page. */
 router.get('/meeting', function(req, res, next) {
   res.render('meeting');

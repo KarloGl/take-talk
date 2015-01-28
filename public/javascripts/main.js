@@ -1,4 +1,30 @@
 $(function() {
+  // Initialize varibles
+  var $window = $(window);
+  var $userNameInput = $('#userName'); // Input for userName
+  var $emailInput = $('#email'); // Input for email
+  var $meetingNameInput = $('#meetingName'); // Input for meetingName
+  var $guestsEmailInput = $('#email'); // Input for guestsEmails
+  var $submit = $('#submit');
+
+  var $createPage = $('.create.page'); // The create page
+  var $appPage = $('.app.page'); // The app page
+
+  var socket = io();
+
+  // Sets the meeting's information
+  function setMeeting () {
+    alert("ok");
+  }
+
+  // Sends form
+  $submit.click(function() {
+    alert("ok");
+  });
+
+});
+
+/*$(function() {
   var FADE_TIME = 150; // ms
   var TYPING_TIMER_LENGTH = 400; // ms
   var COLORS = [
@@ -9,19 +35,23 @@ $(function() {
 
   // Initialize varibles
   var $window = $(window);
-  var $usernameInput = $('.usernameInput'); // Input for username
-  var $messages = $('.messages'); // Messages area
-  var $inputMessage = $('.inputMessage'); // Input message input box
+  var $userNameInput = $('#userName'); // Input for userName
+  var $emailInput = $('#email'); // Input for email
+  var $meetingNameInput = $('#meetingName'); // Input for meetingName
+  var $guestsEmailInput = $('#email'); // Input for guestsEmails
+  var $submit = $('#submit');
 
-  var $loginPage = $('.login.page'); // The login page
-  var $chatPage = $('.chat.page'); // The chatroom page
+  var $createPage = $('.create.page'); // The create page
+  var $appPage = $('.app.page'); // The app page
 
-  // Prompt for setting a username
-  var username;
+  // Prompt for setting the meeting information
+  var userName;
+  var email;
+  var meetingName;
+  var guestsEmails;
+
   var connected = false;
-  var typing = false;
-  var lastTypingTime;
-  var $currentInput = $usernameInput.focus();
+  var $currentInput = $userNameInput.focus();
 
   var socket = io();
 
@@ -35,20 +65,24 @@ $(function() {
     log(message);
   }
 
-  // Sets the client's username
-  function setUsername () {
-    username = cleanInput($usernameInput.val().trim());
-
+  // Sets the meeting's information
+  function setMeeting () {
+    alert("ok");
+    userName = cleanInput($usernameInput.val().trim());
+    email = cleanInput($usernameInput.val().trim());
+    meetingName = cleanInput($usernameInput.val().trim());
+    guestsEmails = cleanInput($usernameInput.val().trim());
+    alert("ok");
     // If the username is valid
-    if (username) {
-      $loginPage.fadeOut();
-      $chatPage.show();
-      $loginPage.off('click');
+    //if (username) {
+      $createPage.fadeOut();
+      $appPage.show();
+      $createPage.off('click');
       $currentInput = $inputMessage.focus();
 
       // Tell the server your username
-      socket.emit('add user', username);
-    }
+      socket.emit('create meeting', userName, email, meetingName, guestsEmails);
+    //}
   }
 
   // Sends a chat message
@@ -213,15 +247,14 @@ $(function() {
 
   // Click events
 
-  // Focus input when clicking anywhere on login page
-  $loginPage.click(function () {
-    $currentInput.focus();
+  // Sends form
+  $submit.click(function() {
+    alert("ok");
+    //setMeeting();
   });
 
-  // Focus input when clicking on the message input's border
-  $inputMessage.click(function () {
-    $inputMessage.focus();
-  });
+  //Faire tous les evenement de clic sur bouton
+
 
   // Socket events
 

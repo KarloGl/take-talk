@@ -37,16 +37,49 @@
           </div>
           <div class="inner cover">
             <ul class="pages">
-              <li class="chat page">
+              <li class="app page">
                 <div class="chatArea">
                   <ul class="messages"></ul>
                 </div>
                 <input class="inputMessage" placeholder="Type here..."/>
               </li>
-              <li class="login page">
-                <div class="form">
-                  <h3 class="title">What's your nickname?</h3>
-                  <input class="usernameInput" type="text" maxlength="14" />
+              <li class="create page">
+                <div class="form form-horizontal">
+                  <!--<form class="form form-horizontal">-->
+                    <fieldset>
+                      <legend>Create a new meeting</legend>
+                      <div class="form-group">
+                        <label class="col-md-4 control-label" for="userName">User name</label>  
+                        <div class="col-md-4">
+                          <input id="userName" name="userName" type="text" placeholder="" class="form-control input-md" required="">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-md-4 control-label" for="email">E-mail</label>  
+                        <div class="col-md-4">
+                          <input id="email" name="email" type="text" placeholder="" class="form-control input-md" required="">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-md-4 control-label" for="meetingName">Meeting name</label>  
+                        <div class="col-md-4">
+                          <input id="meetingName" name="meetingName" type="text" placeholder="" class="form-control input-md" required="">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-md-4 control-label" for="guestsEmails">Guests' e-mails</label>
+                        <div class="col-md-4">                     
+                          <textarea class="form-control" id="guestsEmails" name="guestsEmails"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-md-4 control-label" for="submit"></label>
+                        <div class="col-md-4">
+                          <button id="submit" name="submit" class="btn btn-default">Submit</button>
+                        </div>
+                      </div>
+                    </fieldset>
+                  <!--</form>-->
                 </div>
               </li>
             </ul>
@@ -59,7 +92,7 @@
         </div>
       </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <script src="javascripts/docs.min.js"></script>
     <script src="javascripts/socket.io.js"></script>
