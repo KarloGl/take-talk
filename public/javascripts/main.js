@@ -1,30 +1,145 @@
 $(function() {
-  // Initialize varibles
+
+  // VARIABLES
+  // Page elements
   var $window = $(window);
   var $userNameInput = $('#userName'); // Input for userName
   var $emailInput = $('#email'); // Input for email
   var $meetingNameInput = $('#meetingName'); // Input for meetingName
   var $guestsEmailInput = $('#email'); // Input for guestsEmails
-  var $submit = $('#submit');
-
+  var $submitButton = $('#submit'); // Button for submit
+  var $talkButton = $('#userName'); // Button for talk
+  var $nextButton = $('#email'); // Button for next
+  var $waitButton = $('#meetingName'); // Button for wait
+  var $addGuestsButton = $('#email'); // Button for addGuests
   var $createPage = $('.create.page'); // The create page
   var $appPage = $('.app.page'); // The app page
 
+  // Form inputs data
+  var userName;
+  var email;
+  var meetingName;
+  var guestsEmails;
+
+  // Socketio
   var socket = io();
 
-  // Sets the meeting's information
-  function setMeeting () {
-    alert("ok");
+  // FUNCTIONS
+  // Opens a meeting
+  function createMeeting() {
+    userName = $('<div/>').text($usernameInput.val().trim()).text();
+    email = $('<div/>').text($usernameInput.val().trim()).text();
+    meetingName = $('<div/>').text($usernameInput.val().trim()).text();
+    guestsEmails = $('<div/>').text($usernameInput.val().trim()).text();
+    $createPage.fadeOut();
+    $appPage.show();
+    $createPage.off('click');
+    socket.emit('create meeting', userName, email, meetingName, guestsEmails);
   }
 
-  // Sends form
-  $submit.click(function() {
-    alert("ok");
+  // Opens a talk form
+  function talk() {
+
+  }
+
+  // Queue
+  function queue() {
+    socket.emit('queue');
+  }
+
+  // Unqueue
+  function unqueue() {
+    socket.emit('unqueue');
+  }
+
+  // Stops timer
+  function wait() {
+    socket.emit('wait');
+  }
+
+  // Starts next speech
+  function next() {
+    socket.emit('next');
+  }
+
+  // Opens an addGuests form
+  function addGuests() {
+    
+  }
+
+  // Invites guests
+  function invite() {
+    socket.emit('invite');
+  }
+
+  // Closes a meeting
+  function closeMeeting() {
+    socket.emit('close meeting');
+  }
+
+  // EVENTS
+  // Creates a meeting
+  $createMeeting.click(function() {
+    createMeeting();
   });
+
+  // Opens a talk form
+  $talk.click(function() {
+    talk();
+  });
+
+  // Queue
+  $queue.click(function() {
+    queue();
+  });
+
+  // Unqueue
+  $unqueue.click(function() {
+    unqueue();
+  });
+
+  // Stops timer
+  $wait.click(function() {
+    wait();
+  });
+
+  // Starts next speech
+  $next.click(function() {
+    next();
+  });
+
+  // Opens an addGuests form
+  $addGuests.click(function() {
+    addGuests();
+  });
+
+  // Invite guests
+  $invite.click(function() {
+    invite();
+  });
+
+  // Closes the meeting
+  $closeMeeting.click(function() {
+    closeMeeting();
+  });
+
+  // Whenever the server emits 'user joined', log it in the queue
+  socket.on('user joined', function (data) {
+    log(data.username + ' joined');
+    addParticipantsMessage(data);
+  });
+
+  // Whenever the server emits 'user left', log it in the queue
+  socket.on('user left', function (data) {
+    log(data.username + ' left');
+    addParticipantsMessage(data);
+    removeChatTyping(data);
+  });
+
 
 });
 
-/*$(function() {
+/*
   var FADE_TIME = 150; // ms
   var TYPING_TIMER_LENGTH = 400; // ms
   var COLORS = [
@@ -33,27 +148,9 @@ $(function() {
     '#3b88eb', '#3824aa', '#a700ff', '#d300e7'
   ];
 
-  // Initialize varibles
-  var $window = $(window);
-  var $userNameInput = $('#userName'); // Input for userName
-  var $emailInput = $('#email'); // Input for email
-  var $meetingNameInput = $('#meetingName'); // Input for meetingName
-  var $guestsEmailInput = $('#email'); // Input for guestsEmails
-  var $submit = $('#submit');
-
-  var $createPage = $('.create.page'); // The create page
-  var $appPage = $('.app.page'); // The app page
-
-  // Prompt for setting the meeting information
-  var userName;
-  var email;
-  var meetingName;
-  var guestsEmails;
 
   var connected = false;
   var $currentInput = $userNameInput.focus();
-
-  var socket = io();
 
   function addParticipantsMessage (data) {
     var message = '';
@@ -63,26 +160,6 @@ $(function() {
       message += "there are " + data.numUsers + " participants";
     }
     log(message);
-  }
-
-  // Sets the meeting's information
-  function setMeeting () {
-    alert("ok");
-    userName = cleanInput($usernameInput.val().trim());
-    email = cleanInput($usernameInput.val().trim());
-    meetingName = cleanInput($usernameInput.val().trim());
-    guestsEmails = cleanInput($usernameInput.val().trim());
-    alert("ok");
-    // If the username is valid
-    //if (username) {
-      $createPage.fadeOut();
-      $appPage.show();
-      $createPage.off('click');
-      $currentInput = $inputMessage.focus();
-
-      // Tell the server your username
-      socket.emit('create meeting', userName, email, meetingName, guestsEmails);
-    //}
   }
 
   // Sends a chat message
@@ -178,10 +255,7 @@ $(function() {
     $messages[0].scrollTop = $messages[0].scrollHeight;
   }
 
-  // Prevents input from having injected markup
-  function cleanInput (input) {
-    return $('<div/>').text(input).text();
-  }
+
 
   // Updates the typing event
   function updateTyping () {
@@ -222,39 +296,6 @@ $(function() {
     return COLORS[index];
   }
 
-  // Keyboard events
-
-  $window.keydown(function (event) {
-    // Auto-focus the current input when a key is typed
-    if (!(event.ctrlKey || event.metaKey || event.altKey)) {
-      $currentInput.focus();
-    }
-    // When the client hits ENTER on their keyboard
-    if (event.which === 13) {
-      if (username) {
-        sendMessage();
-        socket.emit('stop typing');
-        typing = false;
-      } else {
-        setUsername();
-      }
-    }
-  });
-
-  $inputMessage.on('input', function() {
-    updateTyping();
-  });
-
-  // Click events
-
-  // Sends form
-  $submit.click(function() {
-    alert("ok");
-    //setMeeting();
-  });
-
-  //Faire tous les evenement de clic sur bouton
-
 
   // Socket events
 
@@ -274,19 +315,6 @@ $(function() {
     addChatMessage(data);
   });
 
-  // Whenever the server emits 'user joined', log it in the chat body
-  socket.on('user joined', function (data) {
-    log(data.username + ' joined');
-    addParticipantsMessage(data);
-  });
-
-  // Whenever the server emits 'user left', log it in the chat body
-  socket.on('user left', function (data) {
-    log(data.username + ' left');
-    addParticipantsMessage(data);
-    removeChatTyping(data);
-  });
-
   // Whenever the server emits 'typing', show the typing message
   socket.on('typing', function (data) {
     addChatTyping(data);
@@ -296,4 +324,4 @@ $(function() {
   socket.on('stop typing', function (data) {
     removeChatTyping(data);
   });
-});
+*/
